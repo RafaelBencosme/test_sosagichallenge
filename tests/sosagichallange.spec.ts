@@ -13,8 +13,40 @@ test('standard_user, should be able to login', async ({page}) =>{
    expect(page.getByText('Swag Labs')).toBeVisible();
 });
 
-test('standard_user, should be able to complete a purchase', async ({page}) => {
+test('problem_user, should be able to login', async ({page}) =>{
    await page.locator('[data-test="username"]').fill('standard_user');
+   await page.locator('[data-test="password"]').fill('secret_sauce');
+   await page.locator('[data-test="login-button"]').click();
+
+   expect(page.getByText('Swag Labs')).toBeVisible();
+});
+
+test('performance_glitch_user, should be able to login', async ({page}) =>{
+   await page.locator('[data-test="username"]').fill('performance_glitch_user');
+   await page.locator('[data-test="password"]').fill('secret_sauce');
+   await page.locator('[data-test="login-button"]').click();
+
+   expect(page.getByText('Swag Labs')).toBeVisible({timeout : 10000 });
+});
+
+test('error_user, should be able to login', async ({page}) =>{
+   await page.locator('[data-test="username"]').fill('error_user');
+   await page.locator('[data-test="password"]').fill('secret_sauce');
+   await page.locator('[data-test="login-button"]').click();
+
+   expect(page.getByText('Swag Labs')).toBeVisible({ timeout : 10000 });
+});
+
+test('visual_user, should be able to login', async ({page}) =>{
+   await page.locator('[data-test="username"]').fill('visual_user');
+   await page.locator('[data-test="password"]').fill('secret_sauce');
+   await page.locator('[data-test="login-button"]').click();
+
+   expect(page.getByText('Swag Labs')).toBeVisible();
+});
+
+test('standard_user, should be able to complete a purchase', async ({page}) => {
+   await page.locator('[data-test="username"]').fill('problem_user');
    await page.locator('[data-test="password"]').fill('secret_sauce');
    await page.locator('[data-test="login-button"]').click();
 
