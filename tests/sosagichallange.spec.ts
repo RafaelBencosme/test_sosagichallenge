@@ -40,3 +40,11 @@ test('should not log in with empty credentials', async ({page}) =>{
 
    expect(page.locator('div').filter({ hasText: /^Epic sadface: Username is required$/ })).toBeVisible();
 });
+
+test('should not log in with invalid credentials', async ({page}) => {
+   await page.locator('[data-test="username"]').fill('standard_user');
+   await page.locator('[data-test="password"]').fill('wrongpass');
+   await page.locator('[data-test="login-button"]').click();
+
+   await expect(page.locator('[data-test="error"]')).toBeVisible();
+});
