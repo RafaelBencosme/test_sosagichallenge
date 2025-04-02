@@ -22,7 +22,7 @@ test.describe('Saucedemo tests', async ()=> {
       topbar = new Topbar(page);
    });
 
-test.describe('login tests',async () =>{   
+test.describe('login tests', async () =>{   
 test('standard_user, should be able to login', async () =>{
    await login.signIn('standard_user', 'secret_sauce');
 
